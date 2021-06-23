@@ -23,10 +23,10 @@ public class Maximumsuche extends PApplet
     // Hilfsvariablen für die Suche
     // -------------------------------------------------------------------
     // ToDo: Hilfsvariablen erzeugen für aktuell größtes und aktuell 
-    //       untersuchtes Element
+    //       untersuchtes Element --> erledigt
     // -------------------------------------------------------------------
-    // aktuell groesstes Element
-    // aktuell untersuchtes Element
+    int max; // aktuell groesstes Element
+    int akt; // aktuell untersuchtes Element
     public int verzoegerung=1000;  // Geschwindigkeit der Ausführung
 
     // Schriften
@@ -135,31 +135,41 @@ public class Maximumsuche extends PApplet
                 // ----------------------------------------------------------------------
 
                 // Balkendiagramm zeichnen
-                if (zahlen[i]>=0) rect(120, 25+i*15, zahlen[i]+1, 13);
+                if (zahlen[i]>=0){ rect(120, 25+i*15, zahlen[i]+1, 13);
 
-                // Beschriftung
-                fill(255,255,255);
-                text(namen[i], 2, 35+i*15);
-                text(""+zahlen[i], 70, 35+i*15);
+                    // Beschriftung
+                    fill(255,255,255);
+                    text(namen[i], 2, 35+i*15);
+                    text(""+zahlen[i], 70, 35+i*15);
+                }
             }
         }
+
     }
 
     /**
      * Bestimmt das Maximum der geladenen Daten.
      *
      * @return index des Maximums
-     */
+     */ 
     public int maximumsuche() {
         // ------------------------------------------------------------------------------
         // ToDO: Implementiere die Maximumsuche, füge nach jeder Veränderung der
         //       Position des aktuellen Elements oder der Position des momentanen Maximums
         //       die Befehle: redraw(); und delay(verzoegerung); ein.
         //       Als Ergebnis soll die Methode die Position des Maximums zurückgeben
-        //       Kommentiere die Maximumsuche
+        //       Kommentiere die Maximumsuche 
         // ------------------------------------------------------------------------------
         //<>//
-        return -1;
+        if (zahlen.length<=0){
+            return -1;}
+        max =0;
+        for (akt = 0; akt < zahlen.length; akt ++){
+            if (zahlen[akt]>zahlen[max]){
+                max = akt; 
+            }
+        }
+        return max;
     }
 
     /**
@@ -167,7 +177,7 @@ public class Maximumsuche extends PApplet
      *
      */    
     public static void main(String _args[]){ 
-                PApplet.main(Maximumsuche.class, _args);
+        PApplet.main(Maximumsuche.class, _args);
     }
 
 }
